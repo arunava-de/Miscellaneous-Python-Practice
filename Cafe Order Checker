@@ -1,0 +1,32 @@
+def merge_lists(my_list, alices_list):
+    merged_list = []
+    left = 0
+    right = 0
+    while left<len(my_list) and right<len(alices_list):
+        if my_list[left]<alices_list[right]:
+            merged_list.append(my_list[left])
+            left += 1
+        elif alices_list[right]<my_list[left]:
+            merged_list.append(alices_list[right])
+            right += 1
+        else:
+            merged_list.append(my_list[left])
+            merged_list.append(alices_list[right])
+            left += 1
+            right += 1
+    if left == len(my_list):
+        merged_list = merged_list + alices_list[right:]
+    elif right == len(alices_list):
+        merged_list = merged_list + my_list[left:]
+    
+    return merged_list
+
+def is_first_come_first_served(take_out, dine_in, served_orders):
+    merged_list = merge_lists(take_out, dine_in)
+    if len(merged_list)!=len(served_orders):
+        return False
+    for i in range(len(served_orders)):
+        if served_orders[i] != merged_list[i]:
+            return False
+    return True
+
