@@ -1,0 +1,22 @@
+def can_two_movies_fill_flight(movie_lengths, flight_length):
+
+    # Determine if two movie runtimes add up to the flight length
+
+    movie_dict = {}
+    for m in movie_lengths:
+        if m in movie_dict.keys():
+            movie_dict[m] += 1
+        else:
+            movie_dict[m] = 1
+            
+    for m in movie_lengths:
+        if (flight_length - m) in movie_dict.keys():
+            if flight_length - m == m:
+                if movie_dict[m] > 1:
+                    return True
+                else:
+                    continue
+            else:
+                return True
+    
+    return False
