@@ -1,0 +1,27 @@
+def __init__(self, input_string):
+
+        # Count the frequency of each word
+        input_string += " "
+    
+        self.words_to_counts = {}
+        w = ""
+        for c in input_string:
+            if c!='.' and c!='!' and c!='?' and c!='(' and c!=')' and c!=',' and c!=':' and c!=' ':
+                w = w+c
+            else:
+                if w=='-' or w==' ' or w=='?' or w=='(' or w==')' or w==',' or w==':' or w=='!' or w=='.' or w=='':
+                    w = ""
+                    continue
+                if len(w)==1:
+                    if w.upper() in self.words_to_counts.keys():
+                        self.words_to_counts[w] += 1
+                    else:
+                        self.words_to_counts[w] = 1
+                elif w[0].upper() + w[1:] in self.words_to_counts.keys():
+                    self.words_to_counts[w[0].upper() + w[1:]] += 1
+                elif w in self.words_to_counts.keys():
+                    self.words_to_counts[w] += 1
+                        
+                else:
+                    self.words_to_counts[w] = 1
+                w = ""
