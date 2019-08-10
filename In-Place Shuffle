@@ -1,0 +1,14 @@
+import random
+
+def get_random(floor, ceiling):
+    return random.randrange(floor, ceiling + 1)
+
+def shuffle(the_list):
+
+    # Shuffle the input in place
+    n = len(the_list)
+    shuffled = []
+    for i in range(n):
+        j = get_random(i,n-1)
+        the_list[i], the_list[j] = the_list[j],the_list[i]
+    return the_list
