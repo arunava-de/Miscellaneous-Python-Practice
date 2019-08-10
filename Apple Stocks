@@ -1,0 +1,11 @@
+def get_max_profit(stock_prices):
+    max_profit = -10**7
+    low = 10**7
+    for p in stock_prices:
+        if p<low:
+            low = p
+            continue
+        if p-low>max_profit:
+            max_profit = p-low
+    
+    return max_profit
