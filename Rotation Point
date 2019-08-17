@@ -1,0 +1,15 @@
+def find_rotation_point(words):
+    first = words[0]
+    left = 0
+    right = len(words)-1
+    
+    while left<right:
+        half = left + (right-left)//2
+
+        if words[half]>=first:
+            left = half
+        else:
+            right = half
+        
+        if left+1==right:
+            return right
