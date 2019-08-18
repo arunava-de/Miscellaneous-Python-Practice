@@ -1,0 +1,22 @@
+def find_repeat(numbers):
+    n = len(numbers)-1
+    l = 1
+    r = n
+    if l==r:
+        return l
+    while l<r:
+        cl = 0
+        cr = 0
+        h = (r+l)//2
+        for i in numbers:
+            if i>=l and i<=h:
+                cl += 1
+            elif i>h and i<=r:
+                cr += 1
+                
+        if cl>h-l+1:
+            r = h
+        elif cr>r-h:
+            l = h+1
+        if l==r:
+            return l
