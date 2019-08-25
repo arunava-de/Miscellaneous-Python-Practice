@@ -1,0 +1,31 @@
+def find_largest(root_node):
+
+    if root_node.right:
+        return find_largest(root_node.right)
+    return root_node.value
+
+def find_second_largest(root_node):
+     
+    if root_node==None:
+        raise ValueError()
+    
+    if root_node.left==None and root_node.right==None:
+        raise ValueError()
+    
+    nodes = [root_node]
+
+    while len(nodes):
+        node = nodes.pop()
+        
+        r = node.right
+        if r:
+            if not r.left and not r.right:
+                return node.value
+            elif not r.left and r.right:
+                nodes.append(r)
+            elif r.left and r.right:
+                nodes.append(r)
+            else:
+                return find_largest(r.left)
+        else:
+            return find_largest(node.left)
