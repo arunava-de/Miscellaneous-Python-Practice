@@ -1,0 +1,19 @@
+def is_binary_search_tree(root):
+    
+    if root==None:
+        return True
+    
+    nodes = [(root,-1000,1000)]
+
+    while len(nodes):
+        node, lower, upper = nodes.pop()
+        if node.value<upper and node.value>lower:
+            if node.left:
+                nodes.append((node.left,lower,node.value))
+            if node.right:
+                nodes.append((node.right,node.value,upper))
+        else:
+            return False
+        
+    return True
+
