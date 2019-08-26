@@ -1,0 +1,25 @@
+class GraphNode:
+
+    def __init__(self, label):
+        self.label = label
+        self.neighbors = set()
+        self.color = None
+
+
+def color_graph(graph, colors):
+
+    # Create a valid coloring for the graph
+
+    for node in graph:
+        
+        if node in node.neighbors:
+            raise ValueError()
+            
+        illegal_colors = set([neighbor.color for neighbor in node.neighbors if neighbor.color])
+        
+        for color in colors:
+            if color not in illegal_colors:
+                node.color = color
+                break
+            
+    return 
