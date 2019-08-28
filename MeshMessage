@@ -4,7 +4,7 @@ def get_path(graph, start_node, end_node):
     Q = deque()
     Q.append(start_node)
     parent = {}
-    visited = set([start_node])
+
     if start_node not in graph.keys() or end_node not in graph.keys():
         raise ValueError("Invalid node")
     elif start_node==end_node:
@@ -18,10 +18,10 @@ def get_path(graph, start_node, end_node):
             break
         
         for neighbor in graph[curr]:
-            if neighbor not in visited:
-                visited.add(neighbor)
+            if neighbor not in parent.keys():
                 Q.append(neighbor)
                 parent[neighbor] = curr
+                
     if curr!=end_node:
         return None
         
@@ -35,3 +35,4 @@ def get_path(graph, start_node, end_node):
     path.reverse()
     
     return path
+
