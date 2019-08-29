@@ -1,16 +1,28 @@
 def find_duplicate(int_list):
-
-    # Find a number that appears more than once ... in O(n) time
-    visited = []
-    nodes = [int_list[-1]]
     
-    while nodes!=[]:
-        curr = nodes.pop(0)
+    #Last element will not have any incoming arrows, hence will be head of our linked list
+    n = len(int_list)-1
+    pos = n+1
+    for _ in range(n):
+        pos = int_list[pos-1]
         
-        if curr in visited:
-            return curr
+    target = pos
+    k = 1
+    pos = int_list[pos-1]
+    
+    while pos!=target:
+        pos = int_list[pos-1]
+        k += 1
+    
+    start = n+1
+    end = n+1
+    
+    for _ in range(k):
+        end = int_list[end-1]
+    
+    
+    while start!=end:
+        start = int_list[start-1]
+        end = int_list[end-1]
         
-        visited.append(curr)
-        nodes.append(int_list[curr-1])
-
-    return 0
+    return start
