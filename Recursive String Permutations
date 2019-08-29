@@ -1,0 +1,22 @@
+def interleave(s,a):
+    res = set()
+    n = len(s)
+    
+    for i in range(n):
+        res.add(s[:i]+a+s[i:])
+    res.add(s+a)
+    return res
+
+def get_permutations(string):
+    if len(string)==0:
+        return set([''])
+    elif len(string)==1:
+        return {string}
+    else:
+        n = len(string)
+        prev = get_permutations(string[:n-1])
+        res = set()
+        for p in prev:
+            res = res.union(interleave(p,string[n-1]))
+        
+        return res
