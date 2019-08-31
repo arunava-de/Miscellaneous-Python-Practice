@@ -1,0 +1,25 @@
+def max_duffel_bag_value(cake_tuples, weight_capacity):
+    min_cake = min(cake_tuples, key = lambda t: t[0])
+    if len(cake_tuples) == 0:
+        return 0
+    elif min_cake[0]>weight_capacity:
+        return 0
+    elif min_cake[0]==0:
+        if min_cake[1]>0:
+            return float('inf')
+        else:
+            ind = cake_tuples.index(min_cake)
+            cake_tuples.pop(ind)
+    
+    opt = [0]*(weight_capacity+1)
+    
+    for w in range(weight_capacity+1):
+        curr_max = 0
+        
+        for t in cake_tuples:
+            if t[0]<=w:
+                curr_max = max(t[1]+opt[w-t[0]],curr_max)
+        
+        opt[w] = curr_max
+    
+    return opt[weight_capacity]
