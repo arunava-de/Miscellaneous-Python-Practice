@@ -1,0 +1,30 @@
+def get_closing_paren(sentence, opening_paren_index):
+    
+    curr = 0
+    n = len(sentence)
+    
+    for i in range(n):
+        if i==opening_paren_index:
+            break
+        if sentence[i] == "(":
+            curr += 1
+        elif sentence[i] == ")":
+            curr -= 1
+    
+    op = curr
+    
+    for i in range(opening_paren_index,n):
+        
+        if op==0 and sentence[i]==")":
+            raise ValueError()
+        if sentence[i] == "(":
+            op += 1
+        elif sentence[i] == ")":
+            op -= 1
+            if op == curr:
+                return i
+            
+    if op!=curr:
+         raise ValueError()
+         
+    return -1
