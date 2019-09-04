@@ -11,7 +11,8 @@ class LinkedListNode(object):
             values.append(node.value)
             node = node.next
         return values
- 
+
+
 def delete_node(node_to_delete):
 
     # Delete the input node from the linked list
