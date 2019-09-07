@@ -1,0 +1,24 @@
+  class LinkedListNode(object):
+
+      def __init__(self, value, next=None):
+          self.value = value
+          self.next  = next
+          
+def contains_cycle(first_node):
+
+  # Check if the linked list contains a cycle
+  if first_node==None:
+      return False
+
+  visited = set()
+  visited.add(first_node)
+  curr = first_node
+
+  while curr.next!=None:
+      if curr.next in visited:
+          return True
+      else:
+          visited.add(curr.next)
+          curr = curr.next
+
+  return False
