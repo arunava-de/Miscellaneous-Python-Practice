@@ -1,0 +1,20 @@
+class LinkedListNode(object):
+
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next  = next
+
+def contains_cycle(first_node):
+
+    # Check if the linked list contains a cycle
+
+    slow = first_node
+    fast = first_node
+    
+    while fast!=None and fast.next!=None:
+        slow = slow.next
+        fast = fast.next.next
+        if fast==slow:
+            return True
+    
+    return False
