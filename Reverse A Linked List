@@ -1,0 +1,27 @@
+class LinkedListNode(object):
+
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next  = next
+
+    def get_values(self):
+        node = self
+        values = []
+        while node is not None:
+            values.append(node.value)
+            node = node.next
+        return values
+  
+def reverse_list(head_of_list):
+
+  curr = head_of_list
+  prev = None
+  nxt = None
+
+  while curr:
+    nxt = curr.next
+    curr.next = prev
+    prev = curr
+    curr = nxt
+
+  return prev
