@@ -1,0 +1,39 @@
+class LinkedListNode(object):
+
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next  = next
+
+    def get_values(self):
+        node = self
+        values = []
+        while node is not None:
+            values.append(node.value)
+            node = node.next
+        return values
+        
+def kth_to_last_node(k, head):
+
+    # Return the kth to last node in the linked list
+    curr = head
+    count = 0
+    
+    if k==0:
+        raise Exception("k is zero")
+        
+    while curr:
+        count += 1
+        curr = curr.next
+    
+    if count == 0:
+        raise Exception("Empty Linked List")
+    else:
+        target = count - k
+        curr = head
+        while target!=0:
+            if curr == None:
+                raise Exception("Linked List does not have enough nodes")
+            curr = curr.next
+            target -= 1
+        
+        return curr
