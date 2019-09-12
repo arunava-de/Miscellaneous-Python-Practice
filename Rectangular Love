@@ -1,0 +1,47 @@
+def find_x_overlap(x1,x2,w1,w2):
+    if x1==x2:
+        return x1,min(w1,w2)
+    elif x1>x2:
+        if x2+w2 <= x1:
+            return None
+        else:
+            return x1, min(x2+w2-x1,w1)
+    else:
+        if x1+w1 <= x2:
+            return None
+        else:
+            return x2, min(x1+w1-x2,w2)
+
+def find_y_overlap(y1,y2,h1,h2):
+    if y1==y2:
+        return y1,min(h1,h2)
+    elif y1>y2:
+        if y2+h2 <= y1:
+            return None
+        else:
+            return y1, min(y2+h2-y1,h1)
+    else:
+        if y1+h1 <= y2:
+            return None
+        else:
+            return y2, min(y1+h1-y2,h2)
+    
+def find_rectangular_overlap(rect1, rect2):
+
+    temp1 = find_x_overlap(rect1['left_x'],rect2['left_x'],rect1['width'],rect2['width'])
+    temp2 = find_y_overlap(rect1['bottom_y'],rect2['bottom_y'],rect1['height'],rect2['height'])
+    
+    res = dict()
+    if not temp1 or not temp2:
+        res['left_x'] = None
+        res['bottom_y'] = None
+        res['width'] = None
+        res['height'] = None
+    
+    else:
+        res['left_x'] = temp1[0]
+        res['bottom_y'] = temp2[0]
+        res['width'] = temp1[1]
+        res['height'] = temp2[1]
+        
+    return res
