@@ -1,0 +1,37 @@
+class TempTracker(object):
+
+    # Implement methods to track the max, min, mean, and mode
+    def __init__(self):
+        self.total = 0.0
+        self.n = 0
+        self.min_temp = float('inf')
+        self.max_temp = float('-inf')
+        self.occurences = dict()
+        for i in range(0,111):
+            self.occurences[i] = 0
+        self.max_occ = 0
+        
+    def insert(self, temperature):
+        self.total += temperature
+        self.n += 1
+        self.occurences[temperature] += 1
+        if temperature>self.max_temp:
+            self.max_temp = temperature
+        if temperature<self.min_temp:
+            self.min_temp = temperature
+        
+        if self.occurences[temperature]>self.occurences[self.max_occ]:
+            self.max_occ = temperature
+            
+    def get_max(self):
+        return self.max_temp
+
+    def get_min(self):
+        return self.min_temp
+
+    def get_mean(self):
+        temp = self.total/self.n
+        return temp
+
+    def get_mode(self):
+        return self.max_occ
