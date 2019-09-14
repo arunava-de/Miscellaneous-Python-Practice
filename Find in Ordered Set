@@ -1,0 +1,20 @@
+def contains(ordered_list, number):
+
+    # Check if an integer is present in the list
+    l = -1
+    r = len(ordered_list)
+    
+    while l+1<r:
+        mid = (l+r)//2
+        
+        if ordered_list[mid]==number:
+            return True
+        if l==r:
+            break
+        else:
+            if number<ordered_list[mid]:
+                r = mid
+            else:
+                l = mid
+
+    return False
