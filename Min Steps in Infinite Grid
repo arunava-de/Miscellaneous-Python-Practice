@@ -1,0 +1,47 @@
+class Solution:
+	# @param A : list of integers
+	# @param B : list of integers
+	# @return an integer
+	
+	def minStep(self,a1,a2,b1,b2):
+        res = 0
+        
+        while a1!=b1 or a2!=b2:
+    #         print("Inside while")
+            if a1>b1 and a2>b2:
+                steps = min(a1-b1,a2-b2)
+                res += steps
+                a1 -= steps
+                a2 -= steps
+            elif a1>b1 and a2<b2:
+                steps = min(a1-b1,b2-a2)
+                res += steps
+                a1 -= steps
+                a2 += steps
+            elif a1<b1 and a2>b2:
+                steps = min(b1-a1,a2-b2)
+                res += steps
+                a1 += steps
+                a2 -= steps
+            elif a1<b1 and a2<b2:
+                steps = min(b1-a1,b2-a2)
+                res += steps
+                a1 += steps
+                a2 += steps
+            elif a1==b1:
+                res += abs(a2-b2)
+                break
+            else:
+                res += abs(a1-b1)
+                break
+    
+        return res
+        
+	def coverPoints(self, A, B):
+        n = len(A)
+        res = 0
+        
+        for i in range(n-1):
+            res += self.minStep(A[i],B[i],A[i+1],B[i+1])
+        
+        return res
