@@ -1,0 +1,43 @@
+class Solution:
+    # @param A : list of integers
+    # @return a list of integers
+    # Need to append to front of list if number of digits change upon adding 1
+
+    # Need to append to front of list if number of digits change upon adding 1
+
+    def plusOne(self, A):
+        
+        carry = 1
+        
+        for i in range(len(A)-1,-1,-1):
+            curr = A[i]
+            temp = curr + carry 
+            
+            # Handle the case where we're at the first digit and temp>9
+            
+            if i==0:
+                if temp>9:
+                    A[0] = temp%10
+                    A = [temp//10] + A
+                    break
+                else:
+                    A[0] = temp
+                    break
+            else:
+                if temp>9:
+                    A[i] = temp%10
+                    carry = temp//10
+                    continue
+                else:
+                    A[i] = temp
+                    carry = 0
+                    
+        # Remove 0s from front of output
+        start = 0
+        for i in range(len(A)):
+            if A[i] == 0:
+                start += 1
+            else:
+                break
+        return A[start:]
+                
